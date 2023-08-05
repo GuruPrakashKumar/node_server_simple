@@ -1,23 +1,26 @@
 const express = require('express')
+const cors = require('cors')
 const app = express()
-const cors = require('cors');
+
 const mongoClient = require('mongodb').MongoClient
 const url = "mongodb+srv://guruprakash745:qcU308yFCSBgowJW@cluster0.pxswliq.mongodb.net/GuruDatabase?retryWrites=true&w=majority";
 
 
 app.use(express.json())
 
-const allowedOrigins = ['https://node-server-simple-v7rm.onrender.com'];
-app.use(cors({
-  origin: allowedOrigins
-}));
+
+app.use(cors());
+// const allowedOrigins = ['https://node-server-simple-v7rm.onrender.com'];
+// app.use(cors({
+//   origin: allowedOrigins
+// }));
 
 mongoClient.connect(url, (err, db) => {
 
     if (err) {
         console.log("Error while connecting mongo client")
     } else {
-
+        console.log("else part")
         const myDb = db.db('GuruDatabase')
         const collection = myDb.collection('users')
 
