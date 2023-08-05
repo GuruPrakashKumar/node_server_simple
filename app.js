@@ -15,6 +15,10 @@ mongoClient.connect(url, (err, db) => {
         const myDb = db.db('GuruDatabase')
         const collection = myDb.collection('users')
 
+        app.get('/', (req, res) => {
+            res.send('Hello, this is the root of the server!');
+        });
+
         app.post('/signup', (req, res) => {
 
             const newUser = {
